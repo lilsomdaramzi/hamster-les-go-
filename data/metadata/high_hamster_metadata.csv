@@ -1,0 +1,13 @@
+hamster_id,safe_hamster_id,cold_start,onset_time,hibernation_time_from_run,hamster_dir
+#14,h14,2020-08-04 18:00:00,2020-09-21 09:33:00,2020-09-21 09:43:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h14
+#15,h15,2020-08-04 18:00:00,2020-10-24 08:07:00,,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h15
+#16,h16,2020-06-25 18:00:00,2020-08-15 12:38:00,2020-08-15 12:48:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h16
+#17,h17,2020-06-18 18:00:00,2020-09-03 10:52:00,2020-09-03 11:02:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h17
+#18,h18,2020-06-18 18:00:00,2020-09-01 15:19:00,2020-09-01 15:29:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h18
+#19,h19,2020-06-25 18:00:00,2020-09-02 12:32:00,2020-09-02 12:42:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h19
+#20,h20,2020-06-25 18:00:00,2020-09-15 13:07:00,,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h20
+#21,h21,2020-06-25 18:00:00,2020-09-21 12:53:00,,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h21
+#22,h22,2020-10-15 18:00:00,2021-01-02 13:01:00,2021-01-02 13:11:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h22
+#23,h23,2020-10-15 18:00:00,2020-12-27 08:58:00,2020-12-27 09:08:00,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h23
+#24,h24,2020-10-15 18:00:00,2020-11-29 12:03:00,,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h24
+#25,h25,2020-10-15 18:00:00,2020-11-27 13:31:00,,/home/leedaso5/projects/IBS/output/260602_all_hamsters_one9_vs_high_shingo_pred_gpu/lr0.1_sr0.95_nr2000_is0.085_ra1e-08_lw400_st6_predshingo_nofit/h25

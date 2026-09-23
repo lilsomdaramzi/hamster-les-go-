@@ -1,0 +1,7 @@
+global_sweep=rule x TMAX x window_days x alpha
+main_question=which final hyperparameter combination has broad good-performing base/slope area?
+good_area_metrics=sum>=100/105/110/115/120, within 5/10 of max sum, both>=50/55, sum>=110 & gap<=10
+n_combinations=480
+low_exclude_ids=#19,#22
+high_exclude_ids=#19,#22
+elapsed_seconds=205.3
