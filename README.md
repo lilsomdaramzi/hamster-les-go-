@@ -68,39 +68,46 @@ LOW_EXCLUDE_IDS='#19,#22' HIGH_EXCLUDE_IDS='#19,#22' micromamba run -n h14viz py
 `final_candidate_bodytemp_high.png` / `final_candidate_bodytemp_low_all.png`(원본 체온 격자),
 `final_candidate_hpr_low_all.png`(저해상도 HPR 격자)도 같은 폴더에 있다.
 
-## output/param_sweep 안의 파일들 — 뭘 보면 되는지
+## output 안의 파일들
 
-**먼저 이 4개만 보면 충분합니다.**
+스크립트가 실행되는 순서대로 만들어진다. 총 19개.
 
-| 파일 | 내용 |
-|---|---|
-| `criterion_order_sensitivity_selected_summary.csv` | 최종 후보 목록. `n_orders_selected`가 클수록(24 중 몇 번 1위였는지) 안정적인 후보 |
-| `figures/final_candidate_*.png` (7장) | 최종 채택 후보의 히트맵·first-drop·HPR·체온·transient 시각화 |
-| `final_candidate_first_drop_days.csv` | hamster별 first-drop 날짜와 성공 여부 (위 그림의 원자료) |
-| `run_config.txt` | 이 결과가 어떤 조건(제외 개체, 조합 수, 소요 시간)으로 나왔는지 기록 |
+### 1. 480개 조합 전체 채점
 
-**나머지는 "왜 이게 뽑혔는지" 감사(audit)용 상세 기록입니다. 평소엔 안 봐도 됩니다.**
+- `global_good_area_all_combinations.csv` — 한 줄이 조합 하나, 480줄. 각 조합에서의 high/low 성공률, 격차, 좋은 영역 개수.
 
-| 파일 | 내용 |
-|---|---|
-| `global_good_area_all_combinations.csv` | 480개 조합 전체의 성적표 (한 줄 = 조합 하나) |
-| `criterion_order_sensitivity_all_24_permutations.csv` | 24가지 기준 순서 전부와 각각이 무엇을 뽑았는지 (selected_summary는 이걸 요약한 것) |
-| `final_candidate_*` (아래 설명) | 최종 후보 히트맵의 상세 수치(399칸 전부) |
+### 2. 24가지 기준 순서로 후보 뽑기
 
-### `final_candidate_*` 파일 6개는 하나의 결과를 4단계로 다르게 표현한 것이다
+- `criterion_order_sensitivity_all_24_permutations.csv` — 4개 지표(합·격차·좋은영역·fallback)의 우선순위를 24가지로 바꿔가며 각각 1등을 뽑은 기록. 24줄.
+- `criterion_order_sensitivity_selected_summary.csv` — 위 24줄을 같은 조합끼리 묶어서, 몇 번 1등했는지(`n_orders_selected`)를 센 표. 맨 윗줄이 최종 채택 조합이다.
 
-최종 후보 하나에 대해 base_threshold(19개) x slope(21개) = 399칸을 계산하면, 아래 순서로 파일이 만들어진다.
+### 3. 최종 채택 조합 하나의 상세
+
+이 조합에 대해 base_threshold(19개) x slope(21개) = 399칸을 계산하고, 같은 결과를 4단계로 압축해서 저장한다.
 
 1. **399칸 원자료 4개** — 전부 같은 모양(행=slope, 열=base_threshold)이고 값만 다르다.
-   - `final_candidate_high_success_matrix.csv` — 고해상도만의 성공률(%)
-   - `final_candidate_low_all_success_matrix.csv` — 저해상도만의 성공률(%)
-   - `final_candidate_combined_success_matrix.csv` — 위 둘을 더한 값 (high + low, 최대 200)
-   - `final_candidate_min_success_matrix.csv` — 위 둘 중 낮은 쪽 (한쪽만 잘 되는 칸을 걸러내는 용도)
-2. **`final_candidate_top80_base_slope.csv`** — 399칸을 성적순으로 정렬해 상위 80개만 뽑은 순위표. 1등 줄이 채택 지점.
-3. **`final_candidate_summary.csv`** — 그 1등 지점 하나에 대한 요약 1줄 (입력 파라미터 + 성공률 + 격차 + 좋은영역 개수 + fallback 비율 등).
+   - `final_candidate_high_success_matrix.csv` — 고해상도 성공률(%)
+   - `final_candidate_low_all_success_matrix.csv` — 저해상도 성공률(%)
+   - `final_candidate_combined_success_matrix.csv` — 위 둘을 더한 값 (최대 200)
+   - `final_candidate_min_success_matrix.csv` — 위 둘 중 낮은 쪽. 한쪽만 잘 되는 칸을 걸러낸다.
+2. **`final_candidate_top80_base_slope.csv`** — 399칸을 성적순으로 정렬해 상위 80개만 남긴 순위표. 1등 줄이 채택 지점.
+3. **`final_candidate_summary.csv`** — 그 1등 지점 하나의 요약 1줄. 입력 파라미터, 성공률, 격차, 좋은 영역 개수, fallback 비율.
 4. **`figures/final_candidate_high_lowall_two_panel_heatmaps.png`** — 1번의 high/low 두 표를 색으로 그린 그림. 노란 별표가 2번의 1등 지점.
 
-즉 **수치(399칸) → 순위표(80개) → 요약(1줄) → 그림** 순서로, 같은 결과를 점점 압축해서 보여주는 구조다.
+즉 **수치(399칸) → 순위표(80개) → 요약(1줄) → 그림** 순으로 같은 결과를 점점 압축한 것이다.
 
-`output/predictability_cache/predictability_selected_candidates.csv`는 최종 후보들의 predictability
-원자료(hamster x 시각별 값)이며, 이후 dip 단계에서 이 파일만 읽으면 predictability를 다시 계산할 필요가 없다.
+여기에 hamster별 판정 결과가 더해진다.
+
+- `final_candidate_first_drop_days.csv` — hamster별 first-drop 날짜와 성공 여부.
+- `figures/final_candidate_first_drop.png` — 위 표를 막대그래프로.
+- `figures/final_candidate_transient_bars.png` — hamster별 추위시작 → transient → onset 기간.
+- `figures/final_candidate_hpr_high.png`, `final_candidate_hpr_low_all.png` — hamster별 predictability/HPR/tilted HPR 곡선.
+- `figures/final_candidate_bodytemp_high.png`, `final_candidate_bodytemp_low_all.png` — hamster별 원본 체온 곡선.
+
+### 4. predictability 저장
+
+- `predictability_cache/predictability_selected_candidates.csv` — 2단계에서 뽑힌 후보들의 predictability 값(hamster x 시각). 이후 dip 단계는 이 파일만 읽으면 되고 predictability를 다시 계산하지 않는다.
+
+### 5. 실행 조건 기록
+
+- `run_config.txt` — 제외한 개체, 조합 수, 소요 시간.
